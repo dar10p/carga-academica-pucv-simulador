@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador de carga real</title>
+  <style>
+    :root {
+      --navy: #0b2545; --navy-2: #173f6e; --gold: #c8963e;
+      --ink: #172033; --muted: #657083; --line: #dce2ea; --paper: #ffffff; --wash: #f3f6f9;
+      --ok: #13795b; --danger: #b3261e;
+      --doc: #2a78d6; --inv: #eb6834; --vin: #1baf7a; --ges: #eda100; --ser: #a3a29c; --otr: #d6d5cf;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink); background: var(--wash);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    button, input, select { font: inherit; }
+    .topbar { background: var(--navy); color: white; padding: 24px max(20px, calc((100vw - 1260px) / 2)); }
+    .topbar h1 { margin: 0; font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: -.02em; }
+    .topbar p { margin: 6px 0 0; color: #d7e4f1; max-width: 70ch; }
+    .layout { max-width: 1260px; margin: 22px auto 60px; padding: 0 16px; display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 20px; align-items: start; }
+    .stack { display: grid; gap: 16px; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    .card-head { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .card-head h2 { margin: 0; font-size: 1.05rem; }
+    .tag { color: var(--gold); font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+    .card-body { padding: 16px 18px; display: grid; gap: 14px; }
+    .hint { color: var(--muted); font-size: .8rem; line-height: 1.45; margin: 0; }
+    label { font-size: .86rem; font-weight: 600; }
+    input[type="number"], select { width: 100%; border: 1px solid #bdc8d5; border-radius: 8px; padding: 7px 8px; background: white; color: var(--ink); }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .field { display: grid; gap: 4px; }
+    .course { background: #f8fafc; border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: grid; grid-template-columns: repeat(5, 1fr) 34px; gap: 8px; align-items: end; }
+    .icon-btn { border: 1px solid #e2b8b5; color: var(--danger); background: #fff8f7; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; }
+    .btn { border-radius: 8px; padding: 7px 12px; font-weight: 700; cursor: pointer; border: 1px solid #aebccc; background: white; color: var(--navy); }
+    .btn.primary { background: var(--navy); color: white; border-color: var(--navy); }
+    .row { display: grid; grid-template-columns: 1fr 90px 70px; gap: 10px; align-items: center; border-bottom: 1px solid #edf0f4; padding-bottom: 8px; }
+    .row:last-child { border-bottom: 0; }
+    .w { color: var(--navy); font-weight: 700; font-size: .78rem; text-align: right; }
+    .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 14px; }
+    .checks label { font-weight: 500; display: flex; gap: 8px; align-items: center; }
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .seg { display: inline-flex; border: 1px solid #aebccc; border-radius: 8px; overflow: hidden; }
+    .seg label { padding: 6px 10px; cursor: pointer; font-weight: 600; font-size: .82rem; }
+    .seg input { display: none; }
+    .seg input:checked + span { color: white; }
+    .seg label:has(input:checked) { background: var(--navy); color: white; }
+    .summary { position: sticky; top: 14px; }
+    .hero { background: linear-gradient(145deg, var(--navy), var(--navy-2)); color: white; padding: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .hero .k { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: #ebc57d; font-weight: 800; }
+    .hero .v { font-size: 2.2rem; font-weight: 850; letter-spacing: -.04em; line-height: 1.1; }
+    .hero .u { color: #cddceb; font-size: .78rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    th, td { padding: 6px 4px; border-bottom: 1px solid #edf0f4; text-align: right; }
+    th:first-child, td:first-child { text-align: left; }
+    th { color: var(--muted); font-weight: 600; font-size: .75rem; }
+    .sw { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+    .bars { display: grid; gap: 6px; }
+    .bar { position: relative; height: 22px; background: #eef1f5; border-radius: 6px; overflow: visible; display: flex; }
+    .bar span { height: 100%; border-right: 2px solid white; }
+    .bar span:first-child { border-radius: 6px 0 0 6px; }
+    .barlabel { font-size: .78rem; color: var(--muted); display: flex; justify-content: space-between; }
+    .line40 { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink); }
+    .pill { border-radius: 999px; padding: 2px 8px; font-size: .72rem; font-weight: 800; }
+    .pill.ok { background: #e2f4ed; color: var(--ok); }
+    .pill.no { background: #fdecea; color: var(--danger); }
+    .callout { border-left: 4px solid var(--gold); background: #fffbf1; padding: 10px 12px; border-radius: 6px; font-size: .86rem; line-height: 1.45; }
+    @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .summary { position: static; order: -1; } }
+    @media (max-width: 640px) { .grid3, .checks { grid-template-columns: 1fr; } .course { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <h1>Simulador de carga real</h1>
+  <p>Calcula, con las mismas entradas, las horas que reconoce la calculadora institucional de la PUCV y el tiempo que las actividades requieren según la evidencia publicada. Los parámetros y sus fuentes están en <code>simulador/parametros.json</code>.</p>
+</header>
+
+<main class="layout">
+  <div class="stack">
+    <section class="card">
+      <div class="card-body">
+        <div class="controls">
+          <strong style="font-size:.86rem">Perfiles de ejemplo:</strong>
+          <span id="presets" class="controls"></span>
+          <button class="btn" id="reset" type="button">Vaciar</button>
+        </div>
+        <div class="controls">
+          <strong style="font-size:.86rem">Escenario:</strong>
+          <span class="seg" id="nivel">
+            <label><input type="radio" name="nivel" value="bajo"><span>bajo</span></label>
+            <label><input type="radio" name="nivel" value="media" checked><span>media</span></label>
+            <label><input type="radio" name="nivel" value="central"><span>moda</span></label>
+            <label><input type="radio" name="nivel" value="alto"><span>alto</span></label>
+          </span>
+          <span class="seg" id="modo">
+            <label><input type="radio" name="modo" value="lectiva" checked><span>semana lectiva</span></label>
+            <label><input type="radio" name="modo" value="anual"><span>promedio anual</span></label>
+          </span>
+        </div>
+        <p class="hint">El escenario bajo toma, para cada parámetro, el valor más favorable a la PUCV; el alto, el menos favorable; la moda, el valor más probable de cada parámetro; la media, el promedio de todas sus combinaciones, que es la cifra que usa el documento. El promedio anual reparte la docencia en 44 semanas laborales; las horas reconocidas no cambian, porque la calculadora institucional no anualiza.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head"><div><span class="tag">Sección 1</span><h2>Docencia de pregrado y postgrado</h2></div></div>
+      <div class="card-body">
+        <div id="courses" class="stack"></div>
+        <div><button class="btn" id="add-course" type="button">+ Agregar asignatura</button></div>
+        <p class="hint">La calculadora oficial solo pide estudiantes, bloques y profesores. Nivel y tipo de asignatura solo afectan las horas reales.</p>
+        <div class="grid3">
+          <div class="field"><label for="tes-pregrado">Tesistas de titulación</label><input id="tes-pregrado" type="number" min="0" step="1" value="0"></div>
+          <div class="field"><label for="tes-magister">Tesistas de magíster</label><input id="tes-magister" type="number" min="0" step="1" value="0"></div>
+          <div class="field"><label for="tes-doctorado">Tesistas de doctorado</label><input id="tes-doctorado" type="number" min="0" step="1" value="0"></div>
+          <div class="field"><label for="talleres">Talleres de formación docente</label><input id="talleres" type="number" min="0" step="1" value="0"></div>
+          <div class="field"><label for="diplomado">Diplomado en docencia</label><select id="diplomado"><option value="no">No</option><option value="si">Sí</option></select></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head"><div><span class="tag">Sección 2</span><h2>Investigación, creación e innovación</h2></div></div>
+      <div class="card-body" id="research"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head"><div><span class="tag">Sección 3</span><h2>Vinculación con el medio</h2></div></div>
+      <div class="card-body">
+        <p class="hint">Indique cuántas actividades de cada tipo realiza. La calculadora oficial reconoce solo una por categoría.</p>
+        <div id="outreach"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head"><div><span class="tag">Sección 4</span><h2>Gestión institucional</h2></div></div>
+      <div class="card-body"><div id="management" class="checks"></div></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head"><div><span class="tag">Otras</span><h2>Otras actividades institucionales</h2></div></div>
+      <div class="card-body">
+        <div class="field" style="max-width:240px"><label for="otras">Horas semanales (máximo 6)</label><input id="otras" type="number" min="0" max="6" step="0.5" value="0"></div>
+        <p class="hint">Previstas en el documento del modelo, pero sin campo en la calculadora oficial. Se suman con el mismo valor en ambos cálculos.</p>
+      </div>
+    </section>
+  </div>
+
+  <aside class="card summary" aria-live="polite">
+    <div class="hero">
+      <div><div class="k">Horas reconocidas</div><div class="v" id="t-cred">0,0</div><div class="u">por la calculadora PUCV</div></div>
+      <div><div class="k">Horas reales</div><div class="v" id="t-real">0,0</div><div class="u" id="t-real-u">horas por semana lectiva</div></div>
+    </div>
+    <div class="card-body">
+      <div class="bars" id="bars"></div>
+      <table>
+        <thead><tr><th>Dimensión</th><th>Reconocidas</th><th>Reales</th><th>Mínimo</th></tr></thead>
+        <tbody id="tbl"></tbody>
+      </table>
+      <div class="callout" id="libres"></div>
+      <p class="hint">Las horas reales son estimaciones con parámetros publicados; donde no hay evidencia se usa la misma cifra que reconoce la PUCV. El servicio no reconocido (correo, trámites, exámenes de tesis) no tiene casilla en la calculadora oficial.</p>
+    </div>
+  </aside>
+</main>
+
+<script src="model.js"></script>
+<script src="parametros.js"></script>
+<script src="perfiles.js"></script>
+<script src="real.js"></script>
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+const fmt = n => Number(n || 0).toLocaleString("es-CL", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const DIM = [
+  ["docencia", "Docencia", "--doc"], ["investigacion", "Investigación", "--inv"],
+  ["vinculacion", "Vinculación", "--vin"], ["gestion", "Gestión", "--ges"],
+];
+const RES_LABELS = {
+  proyectosExternosResponsable: "Proyectos externos como investigador responsable",
+  proyectosInternosResponsable: "Proyectos internos como investigador responsable",
+  proyectosCoinvestigador: "Proyectos como coinvestigador",
+  articulos: "Artículos como autor principal o de correspondencia",
+  proyectosNoAdjudicados: "Postulaciones no adjudicadas como responsable",
+  proyectosInnovacionDocente: "Proyectos de innovación en docencia",
+  otrasInvestigaciones: "Otras investigaciones acordadas",
+};
+const RES_EXTRA = {
+  articulosBajaExigencia: "Artículos como autor principal en revistas de baja exigencia",
+  articulosCoautor: "Artículos como coautor (no reconocidos)",
+  arbitrajes: "Referatos por año (no reconocidos)",
+};
+const VIN_LABELS = {
+  lineasVinculacion: "Líneas de acción de vinculación", asistenciaTecnica: "Asistencia técnica no rutinaria",
+  formacionContinua: "Formación continua, cursos o diplomados", direccionDivulgacion: "Dirección de seminarios o congresos",
+  presenciaSociedad: "Presencia pública por aporte al conocimiento", politicasPublicas: "Políticas públicas o grupos de estudio",
+  difusionPrePostgrado: "Difusión de pregrado y postgrado",
+};
+
+function renderStatic() {
+  const r = $("#research");
+  for (const [k, w] of Object.entries(PUCVCarga.PESOS_INVESTIGACION)) {
+    r.insertAdjacentHTML("beforeend", `<div class="row"><label for="r-${k}">${RES_LABELS[k]}</label><input id="r-${k}" data-r="${k}" type="number" min="0" step="1" value="0"><span class="w">${fmt(w)} h c/u</span></div>`);
+  }
+  for (const [k, lab] of Object.entries(RES_EXTRA)) {
+    r.insertAdjacentHTML("beforeend", `<div class="row"><label for="r-${k}">${lab}</label><input id="r-${k}" data-r="${k}" type="number" min="0" step="1" value="0"><span class="w">${k === "articulosBajaExigencia" ? "4 h c/u" : "0 h"}</span></div>`);
+  }
+  r.insertAdjacentHTML("beforeend", `<div class="row"><label for="r-decl">Dedicación declarada a sus proyectos ante la agencia (h/sem, opcional)</label><input id="r-decl" type="number" min="0" step="1" placeholder="—"><span class="w">real</span></div>`);
+  r.insertAdjacentHTML("beforeend", `<p class="hint" id="art-warn" hidden>La calculadora oficial deja los artículos en cero cuando hay un proyecto externo como responsable.</p>`);
+  const o = $("#outreach");
+  for (const [k, w] of Object.entries(PUCVCarga.PESOS_VINCULACION)) {
+    o.insertAdjacentHTML("beforeend", `<div class="row"><label for="v-${k}">${VIN_LABELS[k]}</label><input id="v-${k}" data-v="${k}" type="number" min="0" step="1" value="0"><span class="w">${fmt(w)} h</span></div>`);
+  }
+  const m = $("#management");
+  for (const [k, c] of Object.entries(PUCVCarga.CARGOS)) {
+    m.insertAdjacentHTML("beforeend", `<label><input type="checkbox" data-g="${k}"> ${c.nombre} <span class="w">${fmt(c.horas)} h</span></label>`);
+  }
+  const p = $("#presets");
+  for (const perfil of PUCVPerfiles) {
+    const b = document.createElement("button");
+    b.className = "btn"; b.type = "button"; b.textContent = perfil.nombre; b.title = perfil.descripcion;
+    b.addEventListener("click", () => cargar(perfil.datos));
+    p.appendChild(b);
+  }
+}
+
+function addCourse(v = { alumnos: 0, bloques: 4, profesores: 1, nivel: "pregrado", tipo: "estandar" }) {
+  const row = document.createElement("div");
+  row.className = "course";
+  row.innerHTML = `
+    <div class="field"><label>Estudiantes</label><input data-c="alumnos" type="number" min="0" step="1" value="${v.alumnos}"></div>
+    <div class="field"><label>Bloques semanales</label><input data-c="bloques" type="number" min="0" step="1" value="${v.bloques}"></div>
+    <div class="field"><label>Profesores</label><input data-c="profesores" type="number" min="1" step="1" value="${v.profesores}"></div>
+    <div class="field"><label>Nivel</label><select data-c="nivel"><option value="pregrado">Pregrado</option><option value="postgrado">Postgrado</option></select></div>
+    <div class="field"><label>Tipo</label><select data-c="tipo"><option value="estandar">Ya impartida</option><option value="nueva">Primera vez que se imparte</option><option value="seccion_paralela">Sección paralela</option><option value="laboratorio">Laboratorio</option></select></div>
+    <button class="icon-btn" type="button" aria-label="Quitar asignatura">×</button>`;
+  row.querySelector('[data-c="nivel"]').value = v.nivel || "pregrado";
+  row.querySelector('[data-c="tipo"]').value = v.tipo || "estandar";
+  row.querySelector("button").addEventListener("click", () => { row.remove(); calcular(); });
+  $("#courses").appendChild(row);
+}
+
+function leer() {
+  const n = el => Math.max(0, Number(el.value) || 0);
+  const asignaturas = [...document.querySelectorAll(".course")].map(r => ({
+    alumnos: n(r.querySelector('[data-c="alumnos"]')), bloques: n(r.querySelector('[data-c="bloques"]')),
+    profesores: Math.max(1, Math.floor(n(r.querySelector('[data-c="profesores"]')))),
+    nivel: r.querySelector('[data-c="nivel"]').value, tipo: r.querySelector('[data-c="tipo"]').value,
+  }));
+  const investigacion = {};
+  document.querySelectorAll("[data-r]").forEach(i => investigacion[i.dataset.r] = n(i));
+  if ($("#r-decl").value !== "") investigacion.horasDeclaradasProyecto = n($("#r-decl"));
+  const vinculacion = {};
+  document.querySelectorAll("[data-v]").forEach(i => vinculacion[i.dataset.v] = n(i));
+  const cargos = [...document.querySelectorAll("[data-g]:checked")].map(i => i.dataset.g);
+  return {
+    docencia: {
+      asignaturas,
+      tesistas: { pregrado: n($("#tes-pregrado")), magister: n($("#tes-magister")), doctorado: n($("#tes-doctorado")) },
+      talleres: n($("#talleres")), diplomado: $("#diplomado").value === "si",
+    },
+    investigacion, vinculacion, gestion: { cargos }, otrasActividades: Math.min(6, n($("#otras"))),
+  };
+}
+
+function aOficial(d) {
+  const o = JSON.parse(JSON.stringify(d));
+  // La calculadora oficial no distingue revistas: todo artículo principal vale lo mismo.
+  o.investigacion.articulos = (o.investigacion.articulos || 0) + (o.investigacion.articulosBajaExigencia || 0);
+  o.docencia.tesistas = Object.values(d.docencia.tesistas).reduce((a, b) => a + b, 0);
+  for (const k of Object.keys(o.vinculacion)) o.vinculacion[k] = o.vinculacion[k] > 0;
+  return o;
+}
+
+function barra(partes, max, etiqueta, total) {
+  const spans = partes.filter(([, v]) => v > 0).map(([c, v]) => `<span style="width:${100 * v / max}%;background:var(${c})" title="${fmt(v)} h"></span>`).join("");
+  return `<div><div class="barlabel"><span>${etiqueta}</span><strong>${fmt(total)} h</strong></div><div class="bar">${spans}<i class="line40" style="left:${100 * 40 / max}%"></i></div></div>`;
+}
+
+function calcular() {
+  const d = leer();
+  const nivel = document.querySelector('input[name="nivel"]:checked').value;
+  const modo = document.querySelector('input[name="modo"]:checked').value;
+  const cred = PUCVCarga.calcularCarga(aOficial(d));
+  const R = PUCVReal.resolver(PUCVParametros, nivel);
+  const re = PUCVReal.horasReales(d, R, modo);
+  const credTot = cred.totalConOtras;
+  $("#t-cred").textContent = fmt(credTot);
+  $("#t-real").textContent = fmt(re.total);
+  $("#t-real-u").textContent = modo === "anual" ? "promedio semanal del año" : "horas por semana lectiva";
+  $("#art-warn").hidden = !cred.investigacion.articulosBloqueados;
+
+  const max = Math.max(48, credTot, re.total) * 1.05;
+  const pc = DIM.map(([k, , c]) => [c, cred[k].total]).concat([["--otr", cred.otrasActividades]]);
+  const pr = DIM.map(([k, , c]) => [c, re[k]]).concat([["--ser", re.servicio_no_reconocido], ["--otr", re.otras]]);
+  $("#bars").innerHTML = barra(pc, max, "Horas reconocidas", credTot) + barra(pr, max, "Horas reales", re.total)
+    + `<div class="barlabel"><span>La línea vertical marca la jornada de 40 h.</span><span></span></div>`;
+
+  const filas = DIM.map(([k, lab, c]) => {
+    const ok = cred.cumplimientoMinimos[k];
+    return `<tr><td><i class="sw" style="background:var(${c})"></i>${lab}</td><td>${fmt(cred[k].total)}</td><td>${fmt(re[k])}</td><td><span class="pill ${ok ? "ok" : "no"}">${ok ? "cumple" : "falta"}</span></td></tr>`;
+  }).join("");
+  $("#tbl").innerHTML = filas
+    + `<tr><td><i class="sw" style="background:var(--ser)"></i>Servicio no reconocido</td><td>—</td><td>${fmt(re.servicio_no_reconocido)}</td><td></td></tr>`
+    + `<tr><td><i class="sw" style="background:var(--otr)"></i>Otras actividades</td><td>${fmt(cred.otrasActividades)}</td><td>${fmt(re.otras)}</td><td></td></tr>`
+    + `<tr><th>Total</th><th>${fmt(credTot)}</th><th>${fmt(re.total)}</th><th></th></tr>`;
+
+  // Costo real de alcanzar cada mínimo, atribuyendo el tiempo en proporción a lo reconocido.
+  let costo = re.servicio_no_reconocido, alcanzable = true;
+  for (const [k] of DIM) {
+    const c = cred[k].total, m = PUCVCarga.MINIMOS[k];
+    if (c > 0) costo += re[k] * m / c; else alcanzable = false;
+  }
+  const libres = 40 - costo;
+  $("#libres").innerHTML = alcanzable
+    ? `Cumplir los cuatro mínimos con este perfil cuesta <strong>${fmt(costo)} h reales</strong> (incluido el servicio no reconocido). De las <strong>26 h</strong> que el modelo declara de libre disposición quedan <strong>${fmt(libres)} h</strong>.`
+    : `Con este perfil alguna dimensión no tiene horas reconocidas, de modo que el costo de sus mínimos no puede estimarse.`;
+}
+
+function cargar(datos) {
+  limpiar(false);
+  for (const a of datos.docencia?.asignaturas || []) addCourse({ profesores: 1, nivel: "pregrado", tipo: "estandar", ...a });
+  const t = datos.docencia?.tesistas || {};
+  $("#tes-pregrado").value = t.pregrado || 0; $("#tes-magister").value = t.magister || 0; $("#tes-doctorado").value = t.doctorado || 0;
+  $("#talleres").value = datos.docencia?.talleres || 0;
+  $("#diplomado").value = datos.docencia?.diplomado ? "si" : "no";
+  for (const [k, v] of Object.entries(datos.investigacion || {})) { const el = document.querySelector(`[data-r="${k}"]`); if (el) el.value = v; }
+  $("#r-decl").value = datos.investigacion?.horasDeclaradasProyecto ?? "";
+  for (const [k, v] of Object.entries(datos.vinculacion || {})) { const el = document.querySelector(`[data-v="${k}"]`); if (el) el.value = Number(v); }
+  for (const k of datos.gestion?.cargos || []) { const el = document.querySelector(`[data-g="${k}"]`); if (el) el.checked = true; }
+  $("#otras").value = datos.otrasActividades || 0;
+  calcular();
+}
+
+function limpiar(recalc = true) {
+  document.querySelectorAll('main input[type="number"]').forEach(i => i.value = i.id === "r-decl" ? "" : 0);
+  document.querySelectorAll("[data-g]").forEach(i => i.checked = false);
+  $("#diplomado").value = "no";
+  $("#courses").innerHTML = "";
+  if (recalc) { addCourse(); calcular(); }
+}
+
+renderStatic();
+$("#add-course").addEventListener("click", () => { if (document.querySelectorAll(".course").length < 15) { addCourse(); calcular(); } });
+$("#reset").addEventListener("click", () => limpiar(true));
+document.addEventListener("input", calcular);
+document.addEventListener("change", e => {
+  if (e.target.dataset?.g === "jefeDocenciaConApoyo" && e.target.checked) $('[data-g="jefeDocenciaSinApoyo"]').checked = false;
+  if (e.target.dataset?.g === "jefeDocenciaSinApoyo" && e.target.checked) $('[data-g="jefeDocenciaConApoyo"]').checked = false;
+  calcular();
+});
+cargar(PUCVPerfiles[0].datos);
+</script>
+</body>
+</html>

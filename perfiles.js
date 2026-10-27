@@ -1,0 +1,231 @@
+// Generado por simulador/generar.py desde perfiles.json. No editar a mano.
+(function (root) {
+  const PERFILES = [
+  {
+    "id": "minimo",
+    "nombre": "Mínimo exigible",
+    "descripcion": "La combinación más simple que satisface los cuatro mínimos con actividades habituales: dos asignaturas de pregrado de 40 estudiantes, tres tesistas de titulación, una postulación no adjudicada, dos actividades de vinculación y una comisión.",
+    "datos": {
+      "docencia": {
+        "asignaturas": [
+          {
+            "bloques": 4,
+            "alumnos": 40,
+            "profesores": 1,
+            "nivel": "pregrado",
+            "tipo": "estandar"
+          },
+          {
+            "bloques": 4,
+            "alumnos": 40,
+            "profesores": 1,
+            "nivel": "pregrado",
+            "tipo": "estandar"
+          }
+        ],
+        "tesistas": {
+          "pregrado": 3,
+          "magister": 0,
+          "doctorado": 0
+        }
+      },
+      "investigacion": {
+        "proyectosNoAdjudicados": 1
+      },
+      "vinculacion": {
+        "lineasVinculacion": 1,
+        "difusionPrePostgrado": 1
+      },
+      "gestion": {
+        "cargos": [
+          "comisiones"
+        ]
+      }
+    }
+  },
+  {
+    "id": "investigador",
+    "nombre": "Investigador con FONDECYT",
+    "descripcion": "Investigador responsable de un proyecto externo y coinvestigador de otro; una asignatura de pregrado y una de postgrado; dos tesistas de doctorado y dos de magíster; tres artículos como autor principal, tres como coautor y diez arbitrajes al año.",
+    "datos": {
+      "docencia": {
+        "asignaturas": [
+          {
+            "bloques": 4,
+            "alumnos": 40,
+            "profesores": 1,
+            "nivel": "pregrado",
+            "tipo": "estandar"
+          },
+          {
+            "bloques": 4,
+            "alumnos": 5,
+            "profesores": 1,
+            "nivel": "postgrado",
+            "tipo": "estandar"
+          }
+        ],
+        "tesistas": {
+          "pregrado": 0,
+          "magister": 2,
+          "doctorado": 2
+        }
+      },
+      "investigacion": {
+        "proyectosExternosResponsable": 1,
+        "proyectosCoinvestigador": 1,
+        "articulos": 3,
+        "articulosCoautor": 3,
+        "arbitrajes": 5
+      },
+      "vinculacion": {
+        "lineasVinculacion": 1,
+        "difusionPrePostgrado": 1
+      },
+      "gestion": {
+        "cargos": [
+          "comisiones"
+        ]
+      }
+    }
+  },
+  {
+    "id": "docente",
+    "nombre": "Docencia intensiva",
+    "descripcion": "Tres asignaturas de pregrado de 40 estudiantes, cuatro tesistas de titulación, un artículo como autor principal y tres arbitrajes; vinculación y comisión mínimas.",
+    "datos": {
+      "docencia": {
+        "asignaturas": [
+          {
+            "bloques": 4,
+            "alumnos": 40,
+            "profesores": 1,
+            "nivel": "pregrado",
+            "tipo": "estandar"
+          },
+          {
+            "bloques": 4,
+            "alumnos": 40,
+            "profesores": 1,
+            "nivel": "pregrado",
+            "tipo": "estandar"
+          },
+          {
+            "bloques": 4,
+            "alumnos": 40,
+            "profesores": 1,
+            "nivel": "pregrado",
+            "tipo": "estandar"
+          }
+        ],
+        "tesistas": {
+          "pregrado": 4,
+          "magister": 0,
+          "doctorado": 0
+        }
+      },
+      "investigacion": {
+        "articulos": 1,
+        "arbitrajes": 3
+      },
+      "vinculacion": {
+        "lineasVinculacion": 1,
+        "difusionPrePostgrado": 1
+      },
+      "gestion": {
+        "cargos": [
+          "comisiones"
+        ]
+      }
+    }
+  },
+  {
+    "id": "gestion",
+    "nombre": "Jefatura de carrera",
+    "descripcion": "Jefe de carrera con dos asignaturas de pregrado de 40 estudiantes, dos tesistas de titulación, coinvestigador de un proyecto externo, un artículo como autor principal y tres arbitrajes.",
+    "datos": {
+      "docencia": {
+        "asignaturas": [
+          {
+            "bloques": 4,
+            "alumnos": 40,
+            "profesores": 1,
+            "nivel": "pregrado",
+            "tipo": "estandar"
+          },
+          {
+            "bloques": 4,
+            "alumnos": 40,
+            "profesores": 1,
+            "nivel": "pregrado",
+            "tipo": "estandar"
+          }
+        ],
+        "tesistas": {
+          "pregrado": 2,
+          "magister": 0,
+          "doctorado": 0
+        }
+      },
+      "investigacion": {
+        "proyectosCoinvestigador": 1,
+        "articulos": 1,
+        "arbitrajes": 3
+      },
+      "vinculacion": {
+        "lineasVinculacion": 1,
+        "difusionPrePostgrado": 1
+      },
+      "gestion": {
+        "cargos": [
+          "jefeCarrera"
+        ]
+      }
+    }
+  },
+  {
+    "id": "baja_produccion",
+    "nombre": "Producción mínima",
+    "descripcion": "La misma docencia, guía de tesis, vinculación y comisión que el perfil de investigación activa, pero sin proyectos, sin arbitrajes y con dos artículos como autor principal en revistas de baja exigencia.",
+    "datos": {
+      "docencia": {
+        "asignaturas": [
+          {
+            "bloques": 4,
+            "alumnos": 40,
+            "profesores": 1,
+            "nivel": "pregrado",
+            "tipo": "estandar"
+          },
+          {
+            "bloques": 4,
+            "alumnos": 5,
+            "profesores": 1,
+            "nivel": "postgrado",
+            "tipo": "estandar"
+          }
+        ],
+        "tesistas": {
+          "pregrado": 0,
+          "magister": 2,
+          "doctorado": 2
+        }
+      },
+      "investigacion": {
+        "articulosBajaExigencia": 2
+      },
+      "vinculacion": {
+        "lineasVinculacion": 1,
+        "difusionPrePostgrado": 1
+      },
+      "gestion": {
+        "cargos": [
+          "comisiones"
+        ]
+      }
+    }
+  }
+];
+  if (typeof module === "object" && module.exports) module.exports = PERFILES;
+  else root.PUCVPerfiles = PERFILES;
+})(typeof globalThis !== "undefined" ? globalThis : this);

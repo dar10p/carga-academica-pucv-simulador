@@ -1,0 +1,790 @@
+{
+ "perfiles": [
+  {
+   "id": "minimo",
+   "nombre": "Mínimo exigible",
+   "descripcion": "La combinación más simple que satisface los cuatro mínimos con actividades habituales: dos asignaturas de pregrado de 40 estudiantes, tres tesistas de titulación, una postulación no adjudicada, dos actividades de vinculación y una comisión.",
+   "datos": {
+    "docencia": {
+     "asignaturas": [
+      {
+       "bloques": 4,
+       "alumnos": 40,
+       "profesores": 1,
+       "nivel": "pregrado",
+       "tipo": "estandar"
+      },
+      {
+       "bloques": 4,
+       "alumnos": 40,
+       "profesores": 1,
+       "nivel": "pregrado",
+       "tipo": "estandar"
+      }
+     ],
+     "tesistas": {
+      "pregrado": 3,
+      "magister": 0,
+      "doctorado": 0
+     }
+    },
+    "investigacion": {
+     "proyectosNoAdjudicados": 1
+    },
+    "vinculacion": {
+     "lineasVinculacion": 1,
+     "difusionPrePostgrado": 1
+    },
+    "gestion": {
+     "cargos": [
+      "comisiones"
+     ]
+    }
+   }
+  },
+  {
+   "id": "investigador",
+   "nombre": "Investigador con FONDECYT",
+   "descripcion": "Investigador responsable de un proyecto externo y coinvestigador de otro; una asignatura de pregrado y una de postgrado; dos tesistas de doctorado y dos de magíster; tres artículos como autor principal, tres como coautor y diez arbitrajes al año.",
+   "datos": {
+    "docencia": {
+     "asignaturas": [
+      {
+       "bloques": 4,
+       "alumnos": 40,
+       "profesores": 1,
+       "nivel": "pregrado",
+       "tipo": "estandar"
+      },
+      {
+       "bloques": 4,
+       "alumnos": 5,
+       "profesores": 1,
+       "nivel": "postgrado",
+       "tipo": "estandar"
+      }
+     ],
+     "tesistas": {
+      "pregrado": 0,
+      "magister": 2,
+      "doctorado": 2
+     }
+    },
+    "investigacion": {
+     "proyectosExternosResponsable": 1,
+     "proyectosCoinvestigador": 1,
+     "articulos": 3,
+     "articulosCoautor": 3,
+     "arbitrajes": 10
+    },
+    "vinculacion": {
+     "lineasVinculacion": 1,
+     "difusionPrePostgrado": 1
+    },
+    "gestion": {
+     "cargos": [
+      "comisiones"
+     ]
+    }
+   }
+  },
+  {
+   "id": "docente",
+   "nombre": "Docencia intensiva",
+   "descripcion": "Tres asignaturas de pregrado de 40 estudiantes, cuatro tesistas de titulación, un artículo como autor principal y tres arbitrajes; vinculación y comisión mínimas.",
+   "datos": {
+    "docencia": {
+     "asignaturas": [
+      {
+       "bloques": 4,
+       "alumnos": 40,
+       "profesores": 1,
+       "nivel": "pregrado",
+       "tipo": "estandar"
+      },
+      {
+       "bloques": 4,
+       "alumnos": 40,
+       "profesores": 1,
+       "nivel": "pregrado",
+       "tipo": "estandar"
+      },
+      {
+       "bloques": 4,
+       "alumnos": 40,
+       "profesores": 1,
+       "nivel": "pregrado",
+       "tipo": "estandar"
+      }
+     ],
+     "tesistas": {
+      "pregrado": 4,
+      "magister": 0,
+      "doctorado": 0
+     }
+    },
+    "investigacion": {
+     "articulos": 1,
+     "arbitrajes": 3
+    },
+    "vinculacion": {
+     "lineasVinculacion": 1,
+     "difusionPrePostgrado": 1
+    },
+    "gestion": {
+     "cargos": [
+      "comisiones"
+     ]
+    }
+   }
+  },
+  {
+   "id": "gestion",
+   "nombre": "Jefatura de carrera",
+   "descripcion": "Jefe de carrera con dos asignaturas de pregrado de 40 estudiantes, dos tesistas de titulación, coinvestigador de un proyecto externo, un artículo como autor principal y tres arbitrajes.",
+   "datos": {
+    "docencia": {
+     "asignaturas": [
+      {
+       "bloques": 4,
+       "alumnos": 40,
+       "profesores": 1,
+       "nivel": "pregrado",
+       "tipo": "estandar"
+      },
+      {
+       "bloques": 4,
+       "alumnos": 40,
+       "profesores": 1,
+       "nivel": "pregrado",
+       "tipo": "estandar"
+      }
+     ],
+     "tesistas": {
+      "pregrado": 2,
+      "magister": 0,
+      "doctorado": 0
+     }
+    },
+    "investigacion": {
+     "proyectosCoinvestigador": 1,
+     "articulos": 1,
+     "arbitrajes": 3
+    },
+    "vinculacion": {
+     "lineasVinculacion": 1,
+     "difusionPrePostgrado": 1
+    },
+    "gestion": {
+     "cargos": [
+      "jefeCarrera"
+     ]
+    }
+   }
+  },
+  {
+   "id": "baja_produccion",
+   "nombre": "Producción mínima",
+   "descripcion": "La misma docencia, guía de tesis, vinculación y comisión que el perfil de investigación activa, pero sin proyectos, sin arbitrajes y con dos artículos como autor principal en revistas de baja exigencia.",
+   "datos": {
+    "docencia": {
+     "asignaturas": [
+      {
+       "bloques": 4,
+       "alumnos": 40,
+       "profesores": 1,
+       "nivel": "pregrado",
+       "tipo": "estandar"
+      },
+      {
+       "bloques": 4,
+       "alumnos": 5,
+       "profesores": 1,
+       "nivel": "postgrado",
+       "tipo": "estandar"
+      }
+     ],
+     "tesistas": {
+      "pregrado": 0,
+      "magister": 2,
+      "doctorado": 2
+     }
+    },
+    "investigacion": {
+     "articulosBajaExigencia": 2
+    },
+    "vinculacion": {
+     "lineasVinculacion": 1,
+     "difusionPrePostgrado": 1
+    },
+    "gestion": {
+     "cargos": [
+      "comisiones"
+     ]
+    }
+   }
+  }
+ ],
+ "casos": [
+  {
+   "perfil": "minimo",
+   "modo": "lectiva",
+   "nivel": "bajo",
+   "credito": 14.283333333333333,
+   "real": {
+    "docencia": 13.779857397504456,
+    "investigacion": 1.8181818181818181,
+    "vinculacion": 2.0,
+    "gestion": 0.57,
+    "servicio_no_reconocido": 1.7045454545454546,
+    "total": 19.872584670231728
+   }
+  },
+  {
+   "perfil": "minimo",
+   "modo": "lectiva",
+   "nivel": "central",
+   "credito": 14.283333333333333,
+   "real": {
+    "docencia": 25.2174688057041,
+    "investigacion": 2.6363636363636362,
+    "vinculacion": 2.0,
+    "gestion": 0.97,
+    "servicio_no_reconocido": 3.409090909090909,
+    "total": 34.23292335115865
+   }
+  },
+  {
+   "perfil": "minimo",
+   "modo": "lectiva",
+   "nivel": "alto",
+   "credito": 14.283333333333333,
+   "real": {
+    "docencia": 30.176470588235293,
+    "investigacion": 3.409090909090909,
+    "vinculacion": 2.0,
+    "gestion": 1.36,
+    "servicio_no_reconocido": 5.454545454545454,
+    "total": 42.400106951871656
+   }
+  },
+  {
+   "perfil": "minimo",
+   "modo": "lectiva",
+   "nivel": "media",
+   "credito": 14.283333333333333,
+   "real": {
+    "docencia": 23.057932263814617,
+    "investigacion": 2.621212121212121,
+    "vinculacion": 2.0,
+    "gestion": 0.9666666666666668,
+    "servicio_no_reconocido": 3.522727272727273,
+    "total": 32.16853832442068
+   }
+  },
+  {
+   "perfil": "minimo",
+   "modo": "anual",
+   "nivel": "bajo",
+   "credito": 14.283333333333333,
+   "real": {
+    "docencia": 10.803030303030303,
+    "investigacion": 1.8181818181818181,
+    "vinculacion": 2.0,
+    "gestion": 0.57,
+    "servicio_no_reconocido": 1.7045454545454546,
+    "total": 16.895757575757575
+   }
+  },
+  {
+   "perfil": "minimo",
+   "modo": "anual",
+   "nivel": "central",
+   "credito": 14.283333333333333,
+   "real": {
+    "docencia": 20.106060606060606,
+    "investigacion": 2.6363636363636362,
+    "vinculacion": 2.0,
+    "gestion": 0.97,
+    "servicio_no_reconocido": 3.409090909090909,
+    "total": 29.12151515151515
+   }
+  },
+  {
+   "perfil": "minimo",
+   "modo": "anual",
+   "nivel": "alto",
+   "credito": 14.283333333333333,
+   "real": {
+    "docencia": 24.0,
+    "investigacion": 3.409090909090909,
+    "vinculacion": 2.0,
+    "gestion": 1.36,
+    "servicio_no_reconocido": 5.454545454545454,
+    "total": 36.223636363636366
+   }
+  },
+  {
+   "perfil": "minimo",
+   "modo": "anual",
+   "nivel": "media",
+   "credito": 14.283333333333333,
+   "real": {
+    "docencia": 18.303030303030305,
+    "investigacion": 2.621212121212121,
+    "vinculacion": 2.0,
+    "gestion": 0.9666666666666668,
+    "servicio_no_reconocido": 3.522727272727273,
+    "total": 27.413636363636364
+   }
+  },
+  {
+   "perfil": "investigador",
+   "modo": "lectiva",
+   "nivel": "bajo",
+   "credito": 32.05,
+   "real": {
+    "docencia": 17.7174688057041,
+    "investigacion": 16.90909090909091,
+    "vinculacion": 2.0,
+    "gestion": 0.57,
+    "servicio_no_reconocido": 1.7045454545454546,
+    "total": 38.90110516934046
+   }
+  },
+  {
+   "perfil": "investigador",
+   "modo": "lectiva",
+   "nivel": "central",
+   "credito": 32.05,
+   "real": {
+    "docencia": 27.075757575757578,
+    "investigacion": 26.477272727272727,
+    "vinculacion": 2.0,
+    "gestion": 0.97,
+    "servicio_no_reconocido": 3.409090909090909,
+    "total": 59.93212121212121
+   }
+  },
+  {
+   "perfil": "investigador",
+   "modo": "lectiva",
+   "nivel": "alto",
+   "credito": 32.05,
+   "real": {
+    "docencia": 35.53565062388592,
+    "investigacion": 40.81818181818182,
+    "vinculacion": 2.0,
+    "gestion": 1.36,
+    "servicio_no_reconocido": 5.454545454545454,
+    "total": 85.1683778966132
+   }
+  },
+  {
+   "perfil": "investigador",
+   "modo": "lectiva",
+   "nivel": "media",
+   "credito": 32.05,
+   "real": {
+    "docencia": 26.776292335115865,
+    "investigacion": 26.647727272727273,
+    "vinculacion": 2.0,
+    "gestion": 0.9666666666666668,
+    "servicio_no_reconocido": 3.522727272727273,
+    "total": 59.91341354723708
+   }
+  },
+  {
+   "perfil": "investigador",
+   "modo": "anual",
+   "nivel": "bajo",
+   "credito": 32.05,
+   "real": {
+    "docencia": 14.537878787878789,
+    "investigacion": 16.90909090909091,
+    "vinculacion": 2.0,
+    "gestion": 0.57,
+    "servicio_no_reconocido": 1.7045454545454546,
+    "total": 35.72151515151515
+   }
+  },
+  {
+   "perfil": "investigador",
+   "modo": "anual",
+   "nivel": "central",
+   "credito": 32.05,
+   "real": {
+    "docencia": 22.03787878787879,
+    "investigacion": 26.477272727272727,
+    "vinculacion": 2.0,
+    "gestion": 0.97,
+    "servicio_no_reconocido": 3.409090909090909,
+    "total": 54.89424242424242
+   }
+  },
+  {
+   "perfil": "investigador",
+   "modo": "anual",
+   "nivel": "alto",
+   "credito": 32.05,
+   "real": {
+    "docencia": 29.401515151515152,
+    "investigacion": 40.81818181818182,
+    "vinculacion": 2.0,
+    "gestion": 1.36,
+    "servicio_no_reconocido": 5.454545454545454,
+    "total": 79.03424242424242
+   }
+  },
+  {
+   "perfil": "investigador",
+   "modo": "anual",
+   "nivel": "media",
+   "credito": 32.05,
+   "real": {
+    "docencia": 21.992424242424242,
+    "investigacion": 26.647727272727273,
+    "vinculacion": 2.0,
+    "gestion": 0.9666666666666668,
+    "servicio_no_reconocido": 3.522727272727273,
+    "total": 55.12954545454546
+   }
+  },
+  {
+   "perfil": "docente",
+   "modo": "lectiva",
+   "nivel": "bajo",
+   "credito": 20.133333333333333,
+   "real": {
+    "docencia": 20.556149732620323,
+    "investigacion": 2.090909090909091,
+    "vinculacion": 2.0,
+    "gestion": 0.57,
+    "servicio_no_reconocido": 1.7045454545454546,
+    "total": 26.921604278074867
+   }
+  },
+  {
+   "perfil": "docente",
+   "modo": "lectiva",
+   "nivel": "central",
+   "credito": 20.133333333333333,
+   "real": {
+    "docencia": 37.37165775401069,
+    "investigacion": 3.1363636363636362,
+    "vinculacion": 2.0,
+    "gestion": 0.97,
+    "servicio_no_reconocido": 3.409090909090909,
+    "total": 46.88711229946524
+   }
+  },
+  {
+   "perfil": "docente",
+   "modo": "lectiva",
+   "nivel": "alto",
+   "credito": 20.133333333333333,
+   "real": {
+    "docencia": 44.76470588235294,
+    "investigacion": 4.181818181818182,
+    "vinculacion": 2.0,
+    "gestion": 1.36,
+    "servicio_no_reconocido": 5.454545454545454,
+    "total": 57.761069518716575
+   }
+  },
+  {
+   "perfil": "docente",
+   "modo": "lectiva",
+   "nivel": "media",
+   "credito": 20.133333333333333,
+   "real": {
+    "docencia": 34.23083778966132,
+    "investigacion": 3.1363636363636362,
+    "vinculacion": 2.0,
+    "gestion": 0.9666666666666668,
+    "servicio_no_reconocido": 3.522727272727273,
+    "total": 43.8565953654189
+   }
+  },
+  {
+   "perfil": "docente",
+   "modo": "anual",
+   "nivel": "bajo",
+   "credito": 20.133333333333333,
+   "real": {
+    "docencia": 16.09090909090909,
+    "investigacion": 2.090909090909091,
+    "vinculacion": 2.0,
+    "gestion": 0.57,
+    "servicio_no_reconocido": 1.7045454545454546,
+    "total": 22.456363636363633
+   }
+  },
+  {
+   "perfil": "docente",
+   "modo": "anual",
+   "nivel": "central",
+   "credito": 20.133333333333333,
+   "real": {
+    "docencia": 29.704545454545457,
+    "investigacion": 3.1363636363636362,
+    "vinculacion": 2.0,
+    "gestion": 0.97,
+    "servicio_no_reconocido": 3.409090909090909,
+    "total": 39.22
+   }
+  },
+  {
+   "perfil": "docente",
+   "modo": "anual",
+   "nivel": "alto",
+   "credito": 20.133333333333333,
+   "real": {
+    "docencia": 35.5,
+    "investigacion": 4.181818181818182,
+    "vinculacion": 2.0,
+    "gestion": 1.36,
+    "servicio_no_reconocido": 5.454545454545454,
+    "total": 48.49636363636363
+   }
+  },
+  {
+   "perfil": "docente",
+   "modo": "anual",
+   "nivel": "media",
+   "credito": 20.133333333333333,
+   "real": {
+    "docencia": 27.098484848484848,
+    "investigacion": 3.1363636363636362,
+    "vinculacion": 2.0,
+    "gestion": 0.9666666666666668,
+    "servicio_no_reconocido": 3.522727272727273,
+    "total": 36.724242424242426
+   }
+  },
+  {
+   "perfil": "gestion",
+   "modo": "lectiva",
+   "nivel": "bajo",
+   "credito": 24.7,
+   "real": {
+    "docencia": 13.55258467023173,
+    "investigacion": 6.090909090909091,
+    "vinculacion": 2.0,
+    "gestion": 7.27,
+    "servicio_no_reconocido": 1.7045454545454546,
+    "total": 30.618039215686274
+   }
+  },
+  {
+   "perfil": "gestion",
+   "modo": "lectiva",
+   "nivel": "central",
+   "credito": 24.7,
+   "real": {
+    "docencia": 24.30837789661319,
+    "investigacion": 8.136363636363637,
+    "vinculacion": 2.0,
+    "gestion": 9.09,
+    "servicio_no_reconocido": 3.409090909090909,
+    "total": 46.94383244206773
+   }
+  },
+  {
+   "perfil": "gestion",
+   "modo": "lectiva",
+   "nivel": "alto",
+   "credito": 24.7,
+   "real": {
+    "docencia": 29.176470588235293,
+    "investigacion": 10.181818181818182,
+    "vinculacion": 2.0,
+    "gestion": 11.36,
+    "servicio_no_reconocido": 5.454545454545454,
+    "total": 58.17283422459893
+   }
+  },
+  {
+   "perfil": "gestion",
+   "modo": "lectiva",
+   "nivel": "media",
+   "credito": 24.7,
+   "real": {
+    "docencia": 22.345811051693406,
+    "investigacion": 8.136363636363637,
+    "vinculacion": 2.0,
+    "gestion": 9.24,
+    "servicio_no_reconocido": 3.522727272727273,
+    "total": 45.24490196078432
+   }
+  },
+  {
+   "perfil": "gestion",
+   "modo": "anual",
+   "nivel": "bajo",
+   "credito": 24.7,
+   "real": {
+    "docencia": 10.575757575757576,
+    "investigacion": 6.090909090909091,
+    "vinculacion": 2.0,
+    "gestion": 7.27,
+    "servicio_no_reconocido": 1.7045454545454546,
+    "total": 27.64121212121212
+   }
+  },
+  {
+   "perfil": "gestion",
+   "modo": "anual",
+   "nivel": "central",
+   "credito": 24.7,
+   "real": {
+    "docencia": 19.196969696969695,
+    "investigacion": 8.136363636363637,
+    "vinculacion": 2.0,
+    "gestion": 9.09,
+    "servicio_no_reconocido": 3.409090909090909,
+    "total": 41.83242424242424
+   }
+  },
+  {
+   "perfil": "gestion",
+   "modo": "anual",
+   "nivel": "alto",
+   "credito": 24.7,
+   "real": {
+    "docencia": 23.0,
+    "investigacion": 10.181818181818182,
+    "vinculacion": 2.0,
+    "gestion": 11.36,
+    "servicio_no_reconocido": 5.454545454545454,
+    "total": 51.99636363636363
+   }
+  },
+  {
+   "perfil": "gestion",
+   "modo": "anual",
+   "nivel": "media",
+   "credito": 24.7,
+   "real": {
+    "docencia": 17.590909090909093,
+    "investigacion": 8.136363636363637,
+    "vinculacion": 2.0,
+    "gestion": 9.24,
+    "servicio_no_reconocido": 3.522727272727273,
+    "total": 40.49
+   }
+  },
+  {
+   "perfil": "baja_produccion",
+   "modo": "lectiva",
+   "nivel": "bajo",
+   "credito": 20.05,
+   "real": {
+    "docencia": 17.7174688057041,
+    "investigacion": 1.3636363636363635,
+    "vinculacion": 2.0,
+    "gestion": 0.57,
+    "servicio_no_reconocido": 1.7045454545454546,
+    "total": 23.355650623885918
+   }
+  },
+  {
+   "perfil": "baja_produccion",
+   "modo": "lectiva",
+   "nivel": "central",
+   "credito": 20.05,
+   "real": {
+    "docencia": 27.075757575757578,
+    "investigacion": 2.727272727272727,
+    "vinculacion": 2.0,
+    "gestion": 0.97,
+    "servicio_no_reconocido": 3.409090909090909,
+    "total": 36.18212121212121
+   }
+  },
+  {
+   "perfil": "baja_produccion",
+   "modo": "lectiva",
+   "nivel": "alto",
+   "credito": 20.05,
+   "real": {
+    "docencia": 35.53565062388592,
+    "investigacion": 4.090909090909091,
+    "vinculacion": 2.0,
+    "gestion": 1.36,
+    "servicio_no_reconocido": 5.454545454545454,
+    "total": 48.44110516934047
+   }
+  },
+  {
+   "perfil": "baja_produccion",
+   "modo": "lectiva",
+   "nivel": "media",
+   "credito": 20.05,
+   "real": {
+    "docencia": 26.776292335115865,
+    "investigacion": 2.727272727272727,
+    "vinculacion": 2.0,
+    "gestion": 0.9666666666666668,
+    "servicio_no_reconocido": 3.522727272727273,
+    "total": 35.99295900178253
+   }
+  },
+  {
+   "perfil": "baja_produccion",
+   "modo": "anual",
+   "nivel": "bajo",
+   "credito": 20.05,
+   "real": {
+    "docencia": 14.537878787878789,
+    "investigacion": 1.3636363636363635,
+    "vinculacion": 2.0,
+    "gestion": 0.57,
+    "servicio_no_reconocido": 1.7045454545454546,
+    "total": 20.176060606060606
+   }
+  },
+  {
+   "perfil": "baja_produccion",
+   "modo": "anual",
+   "nivel": "central",
+   "credito": 20.05,
+   "real": {
+    "docencia": 22.03787878787879,
+    "investigacion": 2.727272727272727,
+    "vinculacion": 2.0,
+    "gestion": 0.97,
+    "servicio_no_reconocido": 3.409090909090909,
+    "total": 31.144242424242425
+   }
+  },
+  {
+   "perfil": "baja_produccion",
+   "modo": "anual",
+   "nivel": "alto",
+   "credito": 20.05,
+   "real": {
+    "docencia": 29.401515151515152,
+    "investigacion": 4.090909090909091,
+    "vinculacion": 2.0,
+    "gestion": 1.36,
+    "servicio_no_reconocido": 5.454545454545454,
+    "total": 42.306969696969695
+   }
+  },
+  {
+   "perfil": "baja_produccion",
+   "modo": "anual",
+   "nivel": "media",
+   "credito": 20.05,
+   "real": {
+    "docencia": 21.992424242424242,
+    "investigacion": 2.727272727272727,
+    "vinculacion": 2.0,
+    "gestion": 0.9666666666666668,
+    "servicio_no_reconocido": 3.522727272727273,
+    "total": 31.20909090909091
+   }
+  }
+ ]
+}
