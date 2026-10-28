@@ -1,6 +1,6 @@
 # Simulador de carga académica PUCV
 
-Simulador interactivo para comparar las horas reconocidas por la calculadora institucional de la PUCV con una estimación del tiempo real de las actividades académicas.
+Simulador interactivo para comparar las horas reconocidas por la calculadora institucional de la PUCV con una estimación del tiempo real de las actividades académicas. Este simulador es el que se usó en el reporte [10.5281/zenodo.23703234](https://zenodo.org/records/23703234)).
 
 ## Abrir el simulador
 
