@@ -1,0 +1,478 @@
+{
+  "meta": {
+    "descripcion": "Parámetros del modelo de horas reales. Cada valor tiene tres niveles: bajo, central y alto. Las unidades se indican en cada bloque. Las claves de 'fuentes' corresponden a entradas de documento/referencias.bib.",
+    "version": "2026-10-12",
+    "convencion": "Valores 'neutral' significan que no se encontró evidencia independiente y se adopta la misma cifra que acredita la PUCV, para no inflar la estimación."
+  },
+  "calendario": {
+    "minutos_bloque": 35,
+    "semanas_lectivas_semestre": 17,
+    "semanas_lectivas_anio": 34,
+    "semanas_laborales_anio": 44,
+    "jornada_referencia": 40,
+    "minimos": {
+      "docencia": 8,
+      "investigacion": 2,
+      "vinculacion": 2,
+      "gestion": 2
+    },
+    "nota": "17 semanas lectivas por semestre y 44 semanas laborales al año son supuestos de conversión; las cifras anuales de la literatura se dividen por 44."
+  },
+  "docencia": {
+    "preparacion_por_hora_contacto": {
+      "pregrado": {
+        "bajo": 1.0,
+        "central": 1.5,
+        "alto": 2.0,
+        "fuentes": [
+          "brookes2025tariffs",
+          "ukzntwl",
+          "fwc2020award",
+          "facso2013instructivo"
+        ],
+        "nota": "Horas de preparación por hora de contacto en una asignatura de pregrado ya dictada antes."
+      },
+      "postgrado": {
+        "bajo": 2.0,
+        "central": 3.0,
+        "alto": 4.0,
+        "fuentes": [
+          "fwc2020award",
+          "facso2013instructivo"
+        ],
+        "nota": "Clase desarrollada (1+3) o especializada (1+4) del Award australiano; FACSO acredita 1:2 en magíster y 1:3 en doctorado."
+      },
+      "nueva": {
+        "bajo": 3.0,
+        "central": 4.0,
+        "alto": 8.0,
+        "fuentes": [
+          "fwc2020award",
+          "kenny2017methodology"
+        ],
+        "nota": "Primera dictación. Mediana de 8 h para planificar una hora de clase presencial según Kenny y Fluck."
+      },
+      "seccion_paralela": {
+        "bajo": 1.0,
+        "central": 1.0,
+        "alto": 1.0,
+        "fuentes": [
+          "fwc2020award"
+        ],
+        "nota": "Repetición de la misma clase a otra sección en la misma semana (repeat lecture del Award)."
+      },
+      "laboratorio": {
+        "bajo": 0.5,
+        "central": 1.0,
+        "alto": 1.5,
+        "fuentes": [
+          "ttuop3218"
+        ],
+        "nota": "Supuesto. Las políticas de EE.UU. ponderan la hora de laboratorio entre 0,5 y 1,0 de una hora de cátedra; aquí se traduce en menos preparación por hora de contacto, sin incluir montaje ni seguridad."
+      }
+    },
+    "evaluacion_por_estudiante_semestre": {
+      "pregrado": {
+        "bajo": 0.8,
+        "central": 1.5,
+        "alto": 2.0,
+        "fuentes": [
+          "brookes2024tariffs",
+          "ukzntwl"
+        ],
+        "nota": "Horas por estudiante y por asignatura semestral: evaluación, retroalimentación y atención."
+      },
+      "postgrado": {
+        "bajo": 1.5,
+        "central": 2.5,
+        "alto": 3.0,
+        "fuentes": [
+          "ukzntwl"
+        ],
+        "nota": "UKZN asigna 2,5 h por estudiante de postgrado y módulo."
+      }
+    },
+    "coordinacion_semestre": {
+      "base": {
+        "bajo": 0.0,
+        "central": 12.0,
+        "alto": 12.0,
+        "fuentes": [
+          "brookes2024tariffs"
+        ],
+        "nota": "Liderazgo de módulo: 12 h fijas por asignatura."
+      },
+      "por_estudiante": {
+        "bajo": 0.0,
+        "central": 0.5,
+        "alto": 0.5,
+        "fuentes": [
+          "brookes2024tariffs"
+        ],
+        "nota": "Más 0,5 h por estudiante."
+      }
+    },
+    "tesis_horas_anio": {
+      "pregrado": {
+        "bajo": 10,
+        "central": 40,
+        "alto": 44,
+        "fuentes": [
+          "brookes2024tariffs",
+          "kenny2022coalface",
+          "utem2024res44"
+        ],
+        "nota": "Trabajo de titulación. Oxford Brookes 10 h; AWET 40 h; UTEM 1 h semanal."
+      },
+      "magister": {
+        "bajo": 40,
+        "central": 46,
+        "alto": 88,
+        "fuentes": [
+          "kenny2022coalface",
+          "facso2013instructivo",
+          "utem2024res44"
+        ],
+        "nota": "Tesis de magíster de investigación. AWET 40 h; FACSO 1 h semanal (46 h); UTEM 2 h semanales."
+      },
+      "doctorado": {
+        "bajo": 42,
+        "central": 62,
+        "alto": 100,
+        "fuentes": [
+          "clegg2025wonkhe",
+          "greenwich2024awp"
+        ],
+        "nota": "UKRSS 2024: 42 h asignadas y 62 h declaradas por los supervisores; Greenwich asigna 100 h."
+      }
+    },
+    "talleres": {
+      "bajo": 1,
+      "central": 1,
+      "alto": 1,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "diplomado": {
+      "bajo": 2,
+      "central": 2,
+      "alto": 2,
+      "fuentes": [],
+      "nota": "Neutral."
+    }
+  },
+  "investigacion": {
+    "proyectosExternosResponsable": {
+      "unidad": "h/semana",
+      "bajo": 12,
+      "central": 15,
+      "alto": 18,
+      "fuentes": [
+        "anid2015bases",
+        "facso2013instructivo"
+      ],
+      "nota": "Distribución simétrica centrada en lo que acredita la PUCV (15 h), con extremo inferior en el mínimo de dedicación que exigía FONDECYT Regular (12 h). La media es igual al crédito PUCV, de modo que la brecha no depende de este parámetro. FACSO admite hasta 22 h. Si se conoce la dedicación declarada ante la agencia, debe usarse esa cifra."
+    },
+    "proyectosInternosResponsable": {
+      "unidad": "h/semana",
+      "bajo": 6,
+      "central": 8,
+      "alto": 10,
+      "fuentes": [
+        "facso2013instructivo"
+      ],
+      "nota": "Simétrica en torno al crédito PUCV (8 h). FACSO admite entre 6 h (tipo III) y 12 h (tipo II)."
+    },
+    "proyectosCoinvestigador": {
+      "unidad": "h/semana",
+      "bajo": 4,
+      "central": 5,
+      "alto": 6,
+      "fuentes": [
+        "anid2015bases",
+        "facso2013instructivo"
+      ],
+      "nota": "Simétrica en torno al crédito PUCV (5 h), con extremo inferior en el mínimo FONDECYT (4 h). FACSO admite hasta 12 h."
+    },
+    "articulos": {
+      "unidad": "h/artículo",
+      "bajo": 80,
+      "central": 120,
+      "alto": 160,
+      "fuentes": [
+        "kenny2022coalface"
+      ],
+      "nota": "AWET asigna 120 h por artículo enviado; el rango es de sensibilidad."
+    },
+    "articulosCoautor": {
+      "unidad": "h/artículo",
+      "bajo": 15,
+      "central": 30,
+      "alto": 60,
+      "fuentes": [],
+      "nota": "Supuesto sin fuente directa; coautoría sustantiva sin ser autor principal ni de correspondencia."
+    },
+    "articulosBajaExigencia": {
+      "unidad": "h/artículo",
+      "bajo": 30,
+      "central": 60,
+      "alto": 90,
+      "fuentes": [],
+      "nota": "Supuesto. Artículo como autor principal en revistas de baja exigencia (por ejemplo, cuartil Q4), que la calculadora valora igual que cualquier otro artículo."
+    },
+    "fraccion_superpuesta_con_proyecto": {
+      "unidad": "fracción",
+      "bajo": 1.0,
+      "central": 0.5,
+      "alto": 0.0,
+      "fuentes": [],
+      "nota": "Parte del tiempo de escritura ya contenida en la dedicación a un proyecto propio. En el nivel bajo se supone que todo está contenido."
+    },
+    "proyectosNoAdjudicados": {
+      "unidad": "h/propuesta",
+      "bajo": 80,
+      "central": 116,
+      "alto": 150,
+      "fuentes": [
+        "vonhippel2015apply"
+      ],
+      "nota": "116 h del investigador principal por propuesta (media); rango de sensibilidad."
+    },
+    "proyectosInnovacionDocente": {
+      "unidad": "h/semana",
+      "bajo": 4,
+      "central": 4,
+      "alto": 4,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "otrasInvestigaciones": {
+      "unidad": "h/semana",
+      "bajo": 1,
+      "central": 1,
+      "alto": 1,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "arbitrajes": {
+      "unidad": "h/revisión",
+      "bajo": 4,
+      "central": 6,
+      "alto": 8,
+      "fuentes": [
+        "aczel2021billion"
+      ],
+      "nota": "Aczel et al. estiman 6 h por revisión."
+    }
+  },
+  "vinculacion": {
+    "factor_por_actividad": {
+      "bajo": 1.0,
+      "central": 1.0,
+      "alto": 1.0,
+      "fuentes": [],
+      "nota": "Neutral: cada actividad real cuesta lo que la PUCV acredita a su categoría; la diferencia proviene de que la calculadora reconoce una sola actividad por categoría."
+    }
+  },
+  "gestion": {
+    "consejeroSuperior": {
+      "bajo": 5,
+      "central": 5,
+      "alto": 5,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "capitular": {
+      "bajo": 5,
+      "central": 5,
+      "alto": 5,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "decano": {
+      "bajo": 18.75,
+      "central": 28.41,
+      "alto": 42.27,
+      "fuentes": [
+        "kenny2019service"
+      ],
+      "nota": "Medianas de 825, 1.250 y 1.860 h anuales para directores de centros presupuestarios pequeños, medianos y grandes."
+    },
+    "vicedecano": {
+      "bajo": 10,
+      "central": 10,
+      "alto": 10,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "secretarioFacultad": {
+      "bajo": 15,
+      "central": 15,
+      "alto": 15,
+      "fuentes": [],
+      "nota": "Neutral; la Comisión de Desarrollo pide revisar."
+    },
+    "directorUnidad": {
+      "bajo": 18.75,
+      "central": 22.73,
+      "alto": 33,
+      "fuentes": [
+        "kenny2019service",
+        "exeter2024wam",
+        "facso2013instructivo"
+      ],
+      "nota": "Kenny y Fluck (825 h), Exeter (1.000 h) y FACSO (22 a 33 h semanales)."
+    },
+    "secretarioAcademico": {
+      "bajo": 10,
+      "central": 10,
+      "alto": 10,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "jefeDocenciaConApoyo": {
+      "bajo": 10,
+      "central": 10,
+      "alto": 10,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "jefeDocenciaSinApoyo": {
+      "bajo": 20,
+      "central": 20,
+      "alto": 20,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "jefeExtension": {
+      "bajo": 6,
+      "central": 9,
+      "alto": 12,
+      "fuentes": [
+        "facso2013instructivo"
+      ],
+      "nota": "FACSO: coordinación de extensión entre 6 y 12 h."
+    },
+    "jefeInvestigacion": {
+      "bajo": 3.18,
+      "central": 7.5,
+      "alto": 15,
+      "fuentes": [
+        "kenny2019service",
+        "facso2013instructivo"
+      ],
+      "nota": "Presidir comisión de investigación 140 h anuales; FACSO hasta 15 h."
+    },
+    "directorPostgrado": {
+      "bajo": 6,
+      "central": 9,
+      "alto": 12,
+      "fuentes": [
+        "facso2013instructivo"
+      ],
+      "nota": "FACSO: coordinación de magíster 6 a 12 h; doctorado hasta 12 h."
+    },
+    "jefeCarrera": {
+      "bajo": 7.27,
+      "central": 9.09,
+      "alto": 11.36,
+      "fuentes": [
+        "brookes2025tariffs",
+        "exeter2024wam"
+      ],
+      "nota": "Oxford Brookes 320 h; Exeter 400 h y 500 h en programas clave."
+    },
+    "editorRevista": {
+      "bajo": 2.27,
+      "central": 2.84,
+      "alto": 12,
+      "fuentes": [
+        "kenny2019service",
+        "facso2013instructivo"
+      ],
+      "nota": "Mediana 100 h y asignación recomendada 125 h; FACSO hasta 12 h. El valor central es menor que el acreditado."
+    },
+    "comisiones": {
+      "bajo": 0.57,
+      "central": 0.97,
+      "alto": 1.36,
+      "fuentes": [
+        "kenny2019service"
+      ],
+      "nota": "Miembro de comisión: 25 a 60 h anuales. El valor central es menor que el acreditado."
+    },
+    "directorCentroClinico": {
+      "bajo": 8,
+      "central": 8,
+      "alto": 8,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "tutorPrimerAno": {
+      "bajo": 1,
+      "central": 1,
+      "alto": 1,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "proyectosInstitucionales": {
+      "bajo": 10,
+      "central": 10,
+      "alto": 10,
+      "fuentes": [],
+      "nota": "Neutral."
+    },
+    "otraGestion": {
+      "bajo": 1,
+      "central": 1,
+      "alto": 1,
+      "fuentes": [],
+      "nota": "Neutral."
+    }
+  },
+  "servicio_no_reconocido": {
+    "correo_administracion": {
+      "unidad": "h/año",
+      "bajo": 60,
+      "central": 120,
+      "alto": 180,
+      "fuentes": [
+        "kenny2022coalface"
+      ],
+      "nota": "AWET asigna 120 h anuales a todo académico por correo y tareas menores."
+    },
+    "examen_tesis": {
+      "unidad": "h/año",
+      "bajo": 15,
+      "central": 30,
+      "alto": 60,
+      "fuentes": [
+        "kenny2019service"
+      ],
+      "nota": "Mediana de 30 h anuales por examinar tesis."
+    }
+  },
+  "referencia_usm": {
+    "fuente": "usm2015carga",
+    "nota": "Modelo de Carga Académica Institucional de la Universidad Técnica Federico Santa María (Decreto de Rectoría N.º 258/2015). No es un parámetro del simulador: se usa solo como referencia en figuras y tablas. Valores en horas por semana, como los publica el decreto.",
+    "asignatura_nominal": 10,
+    "asignatura_nota": "Carga nominal por asignatura de pregrado o postgrado; el director puede aumentarla o disminuirla por número de alumnos, coordinación de asignaturas masivas, primera vez que se dicta o dictación fuera de la sede, sin cifras fijadas.",
+    "tesis": {
+      "pregrado": 1.0,
+      "magister": 1.5,
+      "doctorado": 3.0
+    },
+    "proyecto_externo_responsable": 11,
+    "proyecto_coinvestigador": 5,
+    "articulo_semanal": 5,
+    "articulo_nota": "5 h semanales durante un año por publicación ISI, divididas por el número de autores sin contar alumnos; la primera publicación comprometida en un proyecto se considera incluida en las horas del proyecto.",
+    "autores_por_articulo": 3,
+    "autores_nota": "Supuesto de este documento: tres autores no estudiantes por artículo.",
+    "gestion": {
+      "director_unidad": "20--25",
+      "jefe_carrera": "12--15",
+      "jefe_docencia": "28",
+      "consejero_superior": "10"
+    }
+  }
+}
